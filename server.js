@@ -19,6 +19,9 @@ app.use(session({
 
 
 //Router and model
+const LoginRouter=require('./routers/login.r');
+const RegisterRouter=require('./routers/register.r');
+const LogoutRouter=require('./routers/logout.r');
 
 
 //Use static resources
@@ -43,10 +46,17 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, '/views'))
 
 //Route
-
+app.use('/login',LoginRouter);
+app.use('/register',RegisterRouter);
+app.use('/logout',LogoutRouter);
 
 app.use('/', async(req, res, next) => {
-    res.render('home');
+    if (req.session.Username) {
+        res.render('home',{display1:"d-none",display2:"d-block"});
+    }
+    else {
+        res.render('home',{display1:"d-block",display2:"d-none"});
+    }
 });
 
 
