@@ -11,7 +11,7 @@ exports.render= async(req, res, next) =>{
 exports.check=async(req, res, next)=>{
     try {
         var user=req.body;
-        userM.getByUsername(user).then(rs=>{
+        userM.getByUsername(user.username).then(rs=>{
             if (rs.length==0) {
                 res.render('login',{errWrongPassword:"none",errWrongUsername:"block", username:user.username, password:user.password,display1:"d-block",display2:"d-none"});
                 return false;

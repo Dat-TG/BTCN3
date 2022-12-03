@@ -16,7 +16,7 @@ exports.writeDB=async(req, res, next)=>{
         const pwSalt=user.password+salt;
         const pwHashed=CryptoJS.SHA3(pwSalt, {outputLength:hashLength*4}).toString(CryptoJS.enc.Hex);
         user.password=pwHashed+salt;
-        userM.getByUsername(user).then(rs=>{
+        userM.getByUsername(user.username).then(rs=>{
             if (rs.length==0) {
                 userM.add(user);
                 res.redirect('/');

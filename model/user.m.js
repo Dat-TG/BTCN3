@@ -5,7 +5,7 @@ module.exports={
         return rs;
     },
     getByUsername: async(data)=> {
-        const rs=db.any('SELECT * FROM "Users" WHERE "Username"=$1', [data.username]);
+        const rs=db.any('SELECT * FROM "Users" WHERE "Username"=$1', [data]);
         return rs;
     },
     add: async(data)=>{

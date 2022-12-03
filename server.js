@@ -22,6 +22,7 @@ app.use(session({
 const LoginRouter=require('./routers/login.r');
 const RegisterRouter=require('./routers/register.r');
 const LogoutRouter=require('./routers/logout.r');
+const ProfileRouter=require('./routers/profile.r');
 
 
 //Use static resources
@@ -49,6 +50,7 @@ app.set('views', path.join(__dirname, '/views'))
 app.use('/login',LoginRouter);
 app.use('/register',RegisterRouter);
 app.use('/logout',LogoutRouter);
+app.use('/profile',ProfileRouter);
 
 app.use('/', async(req, res, next) => {
     if (req.session.Username) {
