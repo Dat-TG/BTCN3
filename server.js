@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const { urlencoded } = require('express');
 const app = express();
+const upload=require('express-fileupload');
 const port = 20454;
 
 //Use Session 
@@ -17,12 +18,16 @@ app.use(session({
     cookie: {maxAge: 30*24*60*60*1000},
 }))
 
+//Use file-upload
+app.use(upload());
+
 
 //Router and model
 const LoginRouter=require('./routers/login.r');
 const RegisterRouter=require('./routers/register.r');
 const LogoutRouter=require('./routers/logout.r');
 const ProfileRouter=require('./routers/profile.r');
+const ImportRouter=require('./routers/import.r');
 
 
 //Use static resources
@@ -51,6 +56,7 @@ app.use('/login',LoginRouter);
 app.use('/register',RegisterRouter);
 app.use('/logout',LogoutRouter);
 app.use('/profile',ProfileRouter);
+app.use('/import',ImportRouter);
 
 app.use('/', async(req, res, next) => {
     if (req.session.Username) {

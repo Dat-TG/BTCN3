@@ -19,7 +19,7 @@ exports.writeDB=async(req, res, next)=>{
         userM.getByUsername(user.username).then(rs=>{
             if (rs.length==0) {
                 userM.add(user);
-                res.redirect('/');
+                res.redirect('/login');
             }
             else {
                 user.password=pw;
