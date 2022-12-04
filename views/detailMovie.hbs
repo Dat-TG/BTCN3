@@ -6,6 +6,9 @@
         </figcaption>
     </figure>
 </div>
+<div class="d-flex justify-content-center">
+    <button type="button" class="rounded btn btn-danger {{isFav}}" data-bs-toggle="modal" data-bs-target="#modalAddMovie">Add to Favorite</button>
+</div>
 <div class="card mb-3 mt-3 ms-auto me-auto bg-dark" style="max-width: 1080px;">
     <div class="card-body mt-auto mb-auto">
         <div class="row">
@@ -45,5 +48,33 @@
             {{/each}}
         </p>
         <p><b>Synopses: </b><span class="text-secondary"> {{m.synopses}}</span></p>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modalAddMovie">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Movie To Favorite List"</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/movie/{{m.id}}/addToFavorite" method="POST" id="addMovieForm">
+                    <div class="mb-3">
+                        <label class="col-form-label">Choose Favorite list:</label>
+                        <select class="form-select form-select" name="ListName">
+                            {{#each list}}
+                            <option value="{{Listname}}">{{Listname}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                <button type="submit" form="addMovieForm" class="btn btn-primary" >Save
+                    changes</button>
+            </div>
+        </div>
     </div>
 </div>

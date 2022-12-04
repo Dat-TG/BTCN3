@@ -58,7 +58,7 @@ exports.import = async (req, res, next) => {
                 await reviewsM.add(data4[j]);
             }
         }
-        res.redirect('/');
+        res.redirect('/')
     } catch (err) {
         console.log(err);
         next(err);

@@ -16,7 +16,6 @@ exports.add = async (req, res, next) => {
         await FavM.add(Username,Listname);
         res.redirect('/profile');
     } catch (err) {
-        console.log(err);
         next(err);
     }
 }
@@ -32,7 +31,19 @@ exports.rename=async(req,res,next)=>{
         await FavM.update(Username,old,Listname);
         res.redirect('/profile');
     } catch (err) {
-        console.log(err);
+        next(err);
+    }
+}
+exports.deleteFav = async (req, res, next) => {
+    if (!req.session.Username) {
+        res.redirect('/login');
+        return false;
+    }
+    try {
+        await FavMovieM.deleteAll();
+        await FavListM.deleteAll();
+        res.redirect('/profile');
+    } catch (err) {
         next(err);
     }
 }

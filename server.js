@@ -84,14 +84,16 @@ app.use('/', async (req, res, next) => {
         trippleMovies.push(movies.splice(0, 3));
     }
     var isTREmpty="d-none";
+    var TR="d-block";
     if (rs.length==0) {
         isTREmpty="d-block";
+        TR="d-none";
     }
     if (req.session.Username) {
-        res.render('home', { display1: "d-none", display2: "d-block",trippleMovies:trippleMovies,firstThreeMovies:firstThreeMovies,isTREmpty:isTREmpty });
+        res.render('home', { display1: "d-none", display2: "d-block",trippleMovies:trippleMovies,firstThreeMovies:firstThreeMovies,isTREmpty:isTREmpty,TR:TR });
     }
     else {
-        res.render('home', { display1: "d-block", display2: "d-none",trippleMovies:trippleMovies,firstThreeMovies:firstThreeMovies,isTREmpty:isTREmpty});
+        res.render('home', { display1: "d-block", display2: "d-none",trippleMovies:trippleMovies,firstThreeMovies:firstThreeMovies,isTREmpty:isTREmpty,TR:TR});
     }
 });
 

@@ -12,7 +12,7 @@ exports.render = async (req, res, next) => {
             display1 = "d-block";
         }
         var rs = await CastsM.getByID(id);
-        if (rs.length == 0) {
+        if (rs.length == 0 || rs[0].name==null) {
             res.render('detailCast', { display1: display1, display2: display2, Fcast: "d-none" });
             return false;
         }
@@ -38,7 +38,6 @@ exports.render = async (req, res, next) => {
             }
         });
     } catch (err) {
-        console.log(err);
         next(err);
     }
 }

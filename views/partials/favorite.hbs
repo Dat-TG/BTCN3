@@ -25,13 +25,6 @@
     </div>
 </div>
 {{#each ds}}
-<h2 class="text-start ms-4 mt-4">
-    {{Listname}}
-</h2>
-<input id="HS" name="HS" type="submit" value="Hide/Show" class="rounded">
-<button type="button" class="rounded" data-bs-toggle="modal" data-bs-target="#modalRenameList">Rename</button>
-<input id="Del" name="Del" type="submit" value="Delete" class="rounded">
-
 <div class="modal" tabindex="-1" id="modalRenameList">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -43,7 +36,8 @@
                 <form action="/profile/{{Listname}}/rename" method="POST" id="renameListForm">
                     <div class="mb-3">
                         <label for="nameListrename" class="form-label">Name Your List: </label>
-                        <input class="form-control" id="nameListrename" type="text" name="nameRe" value="{{Listname}}" required>
+                        <input class="form-control" id="nameListrename" type="text" name="nameRe" value="{{Listname}}"
+                            required>
                     </div>
                 </form>
             </div>
@@ -54,24 +48,29 @@
         </div>
     </div>
 </div>
-{{/each}}
-{{#each ds.movies}}
+<h2 class="text-start ms-4 mt-4">
+    {{Listname}}
+</h2>
+<button type="button" class="rounded" data-bs-toggle="modal" data-bs-target="#modalRenameList">Rename</button>
+<input id="Del" name="Del" type="submit" value="Delete" class="rounded">
+{{#each movies}}
 <div class="row">
     {{#each .}}
-    <div class="col-3">
-        <div class="card mb-3 mt-3 ms-auto me-auto bg-dark {{Fcast}}" style="max-width: 360px;">
+    <div class="col-2">
+        <div class="card mb-3 mt-3 ms-auto me-auto bg-dark" style="max-width: 240px;">
             <figure class="ms-auto me-auto">
                 <a href="/movie/{{id}}">
                     <img src="{{img}}" alt="{{title}}" class="img-fluid rounded ms-auto me-auto"
-                        style="max-width: 360px;">
+                        style="max-width: 240px;">
                 </a>
                 <figcaption>
-                    <h5 class="card-title mt-4 mb-4"> {{title}} </h5>
-                    <h5 class="card-title mt-4 mb-4"> ({{year}}) </h5>
+                    <p class="card-title mt-4 mb-4"> {{title}} </p>
+                    <p class="card-title mt-4 mb-4"> ({{year}}) </p>
                 </figcaption>
             </figure>
         </div>
     </div>
     {{/each}}
 </div>
+{{/each}}
 {{/each}}
