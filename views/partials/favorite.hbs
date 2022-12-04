@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+<button type="button" class="rounded" data-bs-toggle="modal" data-bs-target="#modalAddList">Add new favorite list</button>
+</div>
+<div class="modal" tabindex="-1" id="modalAddList">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark">Add new favorite list</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/profile/addList" method="POST" id="addListForm">
+                    <div class="mb-3">
+                        <label for="nameList" class="form-label">Name Your List: </label>
+                        <input class="form-control" id="nameList" type="text" name="name" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" form="addListForm" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{#each ds}}
+<h2 class="text-start ms-4 mt-4">
+    {{Listname}}
+</h2>
+{{/each}}
+{{#each ds.movies}}
+<div class="row">
+    {{#each .}}
+    <div class="col-3">
+        <div class="card mb-3 mt-3 ms-auto me-auto bg-dark {{Fcast}}" style="max-width: 360px;">
+            <figure class="ms-auto me-auto">
+                <a href="/movie/{{id}}">
+                    <img src="{{img}}" alt="{{title}}" class="img-fluid rounded ms-auto me-auto"
+                        style="max-width: 360px;">
+                </a>
+                <figcaption>
+                    <h5 class="card-title mt-4 mb-4"> {{title}} </h5>
+                    <h5 class="card-title mt-4 mb-4"> ({{year}}) </h5>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/each}}

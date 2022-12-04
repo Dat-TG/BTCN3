@@ -84,7 +84,7 @@ app.use('/', async (req, res, next) => {
         trippleMovies.push(movies.splice(0, 3));
     }
     var isTREmpty="d-none";
-    if (firstThreeMovies.length==0) {
+    if (rs.length==0) {
         isTREmpty="d-block";
     }
     if (req.session.Username) {

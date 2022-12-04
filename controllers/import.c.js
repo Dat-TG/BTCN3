@@ -6,7 +6,7 @@ const moviesM = require('../model/movies.m');
 const reviewsM = require('../model/reviews.m');
 exports.import = async (req, res, next) => {
     if (!req.session.Username) {
-        res.redirect('/login');
+        res.render('login',{errWrongPassword:"none",errWrongUsername:"none",display1:"d-block",display2:"d-none"});
         return false;
     }
     try {
@@ -58,7 +58,7 @@ exports.import = async (req, res, next) => {
                 await reviewsM.add(data4[j]);
             }
         }
-        res.render('home', { display1: "d-none", display2: "d-block" });
+        res.redirect('/');
     } catch (err) {
         console.log(err);
         next(err);
