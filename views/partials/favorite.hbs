@@ -48,12 +48,12 @@
         </div>
     </div>
 </div>
+{{#each movies}}
 <h2 class="text-start ms-4 mt-4">
-    {{Listname}}
+    {{../Listname}}
 </h2>
 <button type="button" class="rounded" data-bs-toggle="modal" data-bs-target="#modalRenameList">Rename</button>
 <input id="Del" name="Del" type="submit" value="Delete" class="rounded">
-{{#each movies}}
 <div class="row">
     {{#each .}}
     <div class="col-2">
