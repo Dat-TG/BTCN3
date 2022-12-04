@@ -30,6 +30,7 @@ const LogoutRouter = require('./routers/logout.r');
 const ProfileRouter = require('./routers/profile.r');
 const ImportRouter = require('./routers/import.r');
 const DetailMovieRouter=require('./routers/detailMovie.r');
+const DetailCastRouter=require('./routers/detailCast.r');
 
 
 //Use static resources
@@ -60,6 +61,7 @@ app.use('/logout', LogoutRouter);
 app.use('/profile', ProfileRouter);
 app.use('/import', ImportRouter);
 app.use('/movie',DetailMovieRouter);
+app.use('/cast',DetailCastRouter);
 
 app.use('/', async (req, res, next) => {
     const rs = await moviesM.getTopRating();

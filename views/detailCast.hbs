@@ -1,0 +1,72 @@
+<h1 class="text-center {{NFcast}}">Sorry. We don't have any data about this actor</h1>
+<div class="card mb-3 mt-3 ms-auto me-auto bg-dark {{Fcast}}" style="max-width: 480px;">
+    <figure class="ms-auto me-auto">
+        <img src="{{c.image}}" alt="{{c.name}}" class="img-fluid rounded ms-auto me-auto" style="max-width: 480px;">
+        <figcaption>
+            <h5 class="card-title mt-4 mb-4"> {{c.name}}</h5>
+        </figcaption>
+    </figure>
+</div>
+<div class="card mb-3 mt-3 ms-auto me-auto bg-dark {{Fcast}}" style="max-width: 1080px;">
+    <div class="card-body mt-auto mb-auto">
+        <div class="row">
+            <div class="col-3">
+                <p><b>ID: </b> {{c.id}}</p>
+            </div>
+            <div class="col-3">
+                <p><b>Legacy name: </b> {{c.legacyNameText}}</p>
+            </div>
+            <div class="col-3">
+                <p><b>Nick names: </b>
+                    {{#each c.nicknames}}
+                    {{this}}
+                    {{#unless @last}}, {{/unless}}
+                    {{/each}}
+                </p>
+            </div>
+            <div class="col-3">
+                <p><b>Real name: </b>
+                    {{#each c.realName}}
+                    {{this}}
+                    {{#unless @last}}, {{/unless}}
+                    {{/each}}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p><b>Birth date: </b> {{c.birthDate}}</p>
+            </div>
+            <div class="col-3">
+                <p><b>Birth place: </b> {{c.birthPlace}}</p>
+            </div>
+            <div class="col-3">
+                <p><b>Gender: </b> {{c.gender}}</p>
+            </div>
+            <div class="col-3">
+                <p><b>Height: </b> {{c.heightCentimeters}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<h2 class="text-center {{Fcast}}">Participated Movie</h2>
+{{#each c.movies}}
+<div class="row">
+    {{#each .}}
+    <div class="col-3">
+        <div class="card mb-3 mt-3 ms-auto me-auto bg-dark {{Fcast}}" style="max-width: 360px;">
+            <figure class="ms-auto me-auto">
+                <a href="/movie/{{id}}">
+                    <img src="{{img}}" alt="{{title}}" class="img-fluid rounded ms-auto me-auto"
+                        style="max-width: 360px;">
+                </a>
+                <figcaption>
+                    <h5 class="card-title mt-4 mb-4"> {{title}} </h5>
+                    <h5 class="card-title mt-4 mb-4"> ({{year}}) </h5>
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/each}}

@@ -8,6 +8,10 @@ module.exports={
         const rs=db.any('SELECT * FROM "CastsMovie" WHERE "idMovie"=$1', [IDM]);
         return rs;
     },
+    getByCastID: async(IDC)=> {
+        const rs=db.any('SELECT "idMovie" FROM "CastsMovie" WHERE "id"=$1', [IDC]);
+        return rs;
+    },
     add: async(data)=>{
         const rs=await db.one('INSERT INTO "CastsMovie"("idMovie","id","name","characters") VALUES($1, $2, $3, $4) RETURNING *', 
         [data.idMovie, data.id, data.name, data.characters]);
