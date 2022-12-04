@@ -4,8 +4,8 @@ module.exports={
         const rs=await db.any('SELECT * FROM "CastsMovie"');
         return rs;
     },
-    getByID: async(IDM, IDC)=> {
-        const rs=db.any('SELECT * FROM "CastsMovie" WHERE "idMovie"=$1 AND "id"=$2', [IDM,IDC]);
+    getByID: async(IDM)=> {
+        const rs=db.any('SELECT * FROM "CastsMovie" WHERE "idMovie"=$1', [IDM]);
         return rs;
     },
     add: async(data)=>{

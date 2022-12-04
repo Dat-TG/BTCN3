@@ -5,7 +5,7 @@ module.exports={
         return rs;
     },
     getByID: async(data)=> {
-        const rs=db.any('SELECT * FROM "Movies" WHERE "id"=$1', [data]);
+        const rs=db.one('SELECT * FROM "Movies" WHERE "id"=$1', [data]);
         return rs;
     },
     add: async(data)=>{
