@@ -1,5 +1,6 @@
 <div class="d-flex justify-content-center">
-<button type="button" class="rounded" data-bs-toggle="modal" data-bs-target="#modalAddList">Add new favorite list</button>
+    <button type="button" class="rounded" data-bs-toggle="modal" data-bs-target="#modalAddList">Add new favorite
+        list</button>
 </div>
 <div class="modal" tabindex="-1" id="modalAddList">
     <div class="modal-dialog">
@@ -27,6 +28,32 @@
 <h2 class="text-start ms-4 mt-4">
     {{Listname}}
 </h2>
+<input id="HS" name="HS" type="submit" value="Hide/Show" class="rounded">
+<button type="button" class="rounded" data-bs-toggle="modal" data-bs-target="#modalRenameList">Rename</button>
+<input id="Del" name="Del" type="submit" value="Delete" class="rounded">
+
+<div class="modal" tabindex="-1" id="modalRenameList">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark">Rename Your List</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/profile/{{Listname}}/rename" method="POST" id="renameListForm">
+                    <div class="mb-3">
+                        <label for="nameListrename" class="form-label">Name Your List: </label>
+                        <input class="form-control" id="nameListrename" type="text" name="nameRe" value="{{Listname}}" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" form="renameListForm" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 {{/each}}
 {{#each ds.movies}}
 <div class="row">

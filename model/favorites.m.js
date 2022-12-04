@@ -9,6 +9,10 @@ module.exports={
         [Username, ListName]);
         return rs;
     },
+    update: async(Username, old, neww)=>{
+        const rs=await db.none('UPDATE "FavList" SET "Listname"=$1 WHERE "Username"=$2 AND "Listname"=$3', [neww, Username,old]);
+        return rs;
+    },
     deleteAll: async()=>{
         const rs=await db.none('DELETE FROM "FavList"');
     }
