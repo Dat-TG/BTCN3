@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const { urlencoded } = require('express');
 const app = express();
-const upload=require('express-fileupload');
+const upload = require('express-fileupload');
 const port = 20454;
 
 //Use Session 
@@ -15,7 +15,7 @@ app.use(session({
     secret: 'secret-key-123',
     resave: false,
     saveUninitialized: true,
-    cookie: {maxAge: 30*24*60*60*1000},
+    cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
 }))
 
 //Use file-upload
@@ -23,11 +23,12 @@ app.use(upload());
 
 
 //Router and model
-const LoginRouter=require('./routers/login.r');
-const RegisterRouter=require('./routers/register.r');
-const LogoutRouter=require('./routers/logout.r');
-const ProfileRouter=require('./routers/profile.r');
-const ImportRouter=require('./routers/import.r');
+const moviesM=require('./model/movies.m');
+const LoginRouter = require('./routers/login.r');
+const RegisterRouter = require('./routers/register.r');
+const LogoutRouter = require('./routers/logout.r');
+const ProfileRouter = require('./routers/profile.r');
+const ImportRouter = require('./routers/import.r');
 
 
 //Use static resources
@@ -52,18 +53,41 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, '/views'))
 
 //Route
-app.use('/login',LoginRouter);
-app.use('/register',RegisterRouter);
-app.use('/logout',LogoutRouter);
-app.use('/profile',ProfileRouter);
-app.use('/import',ImportRouter);
+app.use('/login', LoginRouter);
+app.use('/register', RegisterRouter);
+app.use('/logout', LogoutRouter);
+app.use('/profile', ProfileRouter);
+app.use('/import', ImportRouter);
 
-app.use('/', async(req, res, next) => {
+app.use('/', async (req, res, next) => {
+    const rs = await moviesM.getTopRating();
+    var arr = [];
+    var len = 0;
+    var firstThreeMovies=[];
+    var trippleMovies=[];
+    rs.forEach((item) => {
+        arr.push(item);
+        len++;
+        if (len == 30) {
+            return false;
+        }
+    })
+    const movies = arr.map((i) => {
+        return {id:i.id, img:i.img,title:i.title,year:i.year,topRank:i.topRank,rating:i.rating,ratingCount:i.ratingCount,synopses:i.synopses};
+    });
+    firstThreeMovies.push(movies.splice(0, 3));
+    for (let i = 0; i < 9; i++) {
+        trippleMovies.push(movies.splice(0, 3));
+    }
+    var isTREmpty="d-none";
+    if (firstThreeMovies.length==0) {
+        isTREmpty="d-block";
+    }
     if (req.session.Username) {
-        res.render('home',{display1:"d-none",display2:"d-block"});
+        res.render('home', { display1: "d-none", display2: "d-block",trippleMovies:trippleMovies,firstThreeMovies:firstThreeMovies,isTREmpty:isTREmpty });
     }
     else {
-        res.render('home',{display1:"d-block",display2:"d-none"});
+        res.render('home', { display1: "d-block", display2: "d-none",trippleMovies:trippleMovies,firstThreeMovies:firstThreeMovies,isTREmpty:isTREmpty});
     }
 });
 

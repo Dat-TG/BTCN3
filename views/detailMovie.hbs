@@ -1,0 +1,31 @@
+<div class="card mb-3 mt-3 ms-auto me-auto" style="max-width: 1080px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="{{u.img}}" alt="{{u.title}}" class="img-fluid rounded mt-auto ms-2 mb-auto">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body mt-auto mb-auto">
+                <h5 class="card-title mt-4 mb-4"> {{m.title}}</h5>
+                <p><b>ID:</b> {{m.id}}</p>
+                <p><b>Year:</b> {{m.year}}</p>
+                <p><b>Top rank:</b> {{m.topRank}}</p>
+                <p><b>Rating:</b> {{m.Username}}</p>
+                <p><b>Rating count:</b> {{m.ratingCount}}</p>
+                <p><b>Synopses:</b> {{m.synopses}}</p>
+                <p><b>Genres</b>
+                {{#each m.genres}}
+                {{this}}, 
+                {{/each}}
+                </p>
+                <p><b>Casts</b>
+                {{#each m.casts}}
+                    {{#each characters}}
+                        {{this}},
+                    {{/each}}
+                    :<a href="/actor/{{id}}">{{name}}</a>
+                {{/each}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

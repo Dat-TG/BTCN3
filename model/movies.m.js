@@ -15,5 +15,9 @@ module.exports={
     },
     deleteAll: async()=>{
         const rs=await db.none('DELETE FROM "Movies"');
+    },
+    getTopRating: async()=>{
+        const rs=await db.any('SELECT * FROM "Movies" ORDER BY "rating" DESC NULLS LAST');
+        return rs;
     }
 }

@@ -1,0 +1,42 @@
+.carousel{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#topRatingSlide .carousel-indicators {
+    top: 10px;
+    justify-content:flex-end;
+    margin:0;
+    padding-left:15px;
+    padding-right:15px;
+    top: -50px;
+  }
+  .carousel-indicators li {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+  }
+  
+  .carousel-indicators li:not(:last-child) {
+    margin-right: 20px;
+  }
+  #topRatingSlide .carousel-control-prev {
+    justify-content: flex-start;
+    margin-left: 20px;
+  }
+  #topRatingSlide .carousel-control-next {
+    justify-content: flex-end;
+    margin-right: 20px;
+  }
+body {
+    background-color: black;
+    color: white;
+}
+figcaption{
+    text-align: center;
+}
+
+img:hover {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+    box-shadow: 0px 10px 25px white;
+  }
